@@ -3,35 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MatryxX · Underestimated Determination</title>
-  <meta name="description" content="WebGL hyper-realistic cinematic of rising determination. Underestimated is fuel." />
+  <title>MatryxX · Underestimated Determination · Remastered</title>
+  <meta name="description" content="Fully remastered WebGL hyper-realistic cinematic of rising determination. Underestimated is fuel. Three.js animated particle ascension with cinematic bloom." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
   <div id="loader">
     <div class="loader-inner">
       <div class="pulse"></div>
       <p>Underestimated. Determined.</p>
+      <span class="sub">Remastering the architecture of becoming undeniable</span>
     </div>
   </div>
   <canvas id="webgl"></canvas>
   <div id="ui">
     <header>
       <h1>MATRYXX</h1>
-      <p class="tag">Underestimated Determination · Remastered</p>
+      <p class="tag">Underestimated Determination · Fully Remastered</p>
     </header>
     <div class="narrative">
       <p id="quote">The ones who were counted out write the rules that outlast the counters.</p>
     </div>
     <footer>
-      <span>WebGL · Hyper-Real Particle Ascension</span>
+      <span>WebGL · Hyper-Real Particle Ascension · Bloom</span>
       <span>gothamgodzilla / matryx-man</span>
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
