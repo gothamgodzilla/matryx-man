@@ -1,10 +1,10 @@
 # MatryxX · Underestimated Determination
 
-**Fully Remastered · Pt. 5** — WebGL animated hyper-realistic cinematic experience with bloom post-processing.
+**Fully Remastered · Pt. 6** — WebGL animated hyper-realistic cinematic experience with bloom post-processing, denser rising particles, enhanced PBR spine/helix, cinematic lighting, and mouse-influenced camera.
 
 ## What this is
 
-A self-contained Three.js WebGL scene of rising determination particles, a glowing ascending spine, energy helices, orbiting orbs, and cinematic lighting. Hyper-realistic material response (MeshPhysicalMaterial with clearcoat, metalness, roughness, emissive, ACES tone mapping, soft shadows, UnrealBloomPass) with animated particle streams that refuse to fall. The underestimated become the architecture.
+A self-contained Three.js WebGL scene of rising determination particles (58k), a glowing ascending spine, energy helices, orbiting orbs, and cinematic lighting. Hyper-realistic material response (MeshPhysicalMaterial with clearcoat, metalness, roughness, emissive, transmission, ACES tone mapping, soft shadows, UnrealBloomPass) with animated particle streams that refuse to fall. The underestimated become the architecture.
 
 No build step. Open `index.html` or deploy statically. Uses ES modules + importmap for Three.js r169 + post-processing.
 
@@ -23,6 +23,8 @@ Underestimated is not a verdict. It is fuel.
 Determination is the quiet refusal to become the story others wrote.
 
 Refuse the narrative. Build the ascent.
+
+Underestimated determination is the quiet engine that rewrites the board.
 
 ---
 
