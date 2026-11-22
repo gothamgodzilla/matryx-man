@@ -9,41 +9,41 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; colo
 #loader.hidden { opacity: 0; pointer-events: none; }
 .loader-inner { text-align: center; }
 .pulse {
-  width: 160px; height: 160px; border-radius: 50%;
+  width: 180px; height: 180px; border-radius: 50%;
   border: 2px solid #ff6b00;
   margin: 0 auto 42px;
-  animation: pulse 2.4s ease-out infinite;
-  box-shadow: 0 0 100px rgba(255, 107, 0, 0.98), inset 0 0 50px rgba(255, 107, 0, 0.6);
+  animation: pulse 2.2s ease-out infinite;
+  box-shadow: 0 0 120px rgba(255, 107, 0, 0.98), inset 0 0 60px rgba(255, 107, 0, 0.65);
 }
 @keyframes pulse {
-  0% { transform: scale(0.38); opacity: 1; }
-  100% { transform: scale(5.6); opacity: 0; }
+  0% { transform: scale(0.35); opacity: 1; }
+  100% { transform: scale(6.2); opacity: 0; }
 }
-.sub { display: block; margin-top: 22px; font-size: 13px; letter-spacing: 0.36em; opacity: 0.88; font-weight: 300; text-transform: uppercase; }
+.sub { display: block; margin-top: 22px; font-size: 13px; letter-spacing: 0.38em; opacity: 0.9; font-weight: 300; text-transform: uppercase; }
 #ui {
   position: fixed; inset: 0; z-index: 5; pointer-events: none;
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 72px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, transparent 14%, transparent 86%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.88) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.88) 100%);
 }
 header h1 { 
   font-family: 'Playfair Display', serif; 
-  font-size: 98px; letter-spacing: 0.46em; font-weight: 400; 
-  text-shadow: 0 0 90px rgba(255,107,0,0.8), 0 0 32px rgba(255,180,0,0.45); 
-  background: linear-gradient(180deg, #fff 0%, #ffdd99 100%);
+  font-size: 102px; letter-spacing: 0.48em; font-weight: 400; 
+  text-shadow: 0 0 100px rgba(255,107,0,0.85), 0 0 36px rgba(255,180,0,0.5); 
+  background: linear-gradient(180deg, #fff 0%, #ffe0aa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.tag { font-size: 15px; letter-spacing: 0.38em; opacity: 0.96; margin-top: 20px; font-weight: 400; text-transform: uppercase; }
+.tag { font-size: 15px; letter-spacing: 0.40em; opacity: 0.97; margin-top: 20px; font-weight: 400; text-transform: uppercase; }
 .narrative { 
-  max-width: 880px; font-size: 34px; line-height: 1.38; opacity: 0.995; font-weight: 300; 
-  text-shadow: 0 6px 40px rgba(0,0,0,0.94); transition: opacity 0.85s ease; 
+  max-width: 920px; font-size: 36px; line-height: 1.36; opacity: 0.995; font-weight: 300; 
+  text-shadow: 0 8px 48px rgba(0,0,0,0.95); transition: opacity 0.85s ease; 
   font-family: 'Inter', sans-serif;
 }
-footer { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 0.34em; opacity: 0.75; font-weight: 400; text-transform: uppercase; }
+footer { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 0.36em; opacity: 0.78; font-weight: 400; text-transform: uppercase; }
 @media (max-width: 768px) {
   #ui { padding: 24px; }
-  header h1 { font-size: 38px; letter-spacing: 0.15em; }
-  .narrative { font-size: 17px; max-width: 100%; }
+  header h1 { font-size: 40px; letter-spacing: 0.16em; }
+  .narrative { font-size: 18px; max-width: 100%; }
   footer { flex-direction: column; gap: 9px; font-size: 10px; }
 }
