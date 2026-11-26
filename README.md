@@ -1,10 +1,10 @@
 # MatryxX · Underestimated Determination
 
-**Fully Remastered · Pt.17** — WebGL animated hyper-realistic cinematic experience. 800k multi-layer rising particles with advanced multi-octave turbulence + strong mouse/touch attraction and magnetic surge response, elevated PBR spine/helix/core (clearcoat, transmission, iridescence IOR 1.4+, higher clearcoat response), multi-light cinematic rig with volumetric glow approximation, mouse-influenced orbit + parallax, touch + keyboard + click surge, refined typography, narrative, and UI pulse.
+**Fully Remastered · Pt.18** — WebGL animated hyper-realistic cinematic experience. 900k multi-layer rising particles with advanced multi-octave turbulence + strong mouse/touch magnetic attraction and surge response, elevated PBR spine/helix/core (clearcoat, transmission, iridescence IOR 1.45+, higher clearcoat response), multi-light cinematic rig with volumetric glow approximation, mouse-influenced orbit + parallax, touch + keyboard + click surge, refined typography, narrative, and UI pulse.
 
 ## What this is
 
-A self-contained Three.js WebGL scene of rising determination particles (800k across three layered systems), a glowing ascending spine, energy helices, orbiting orbs, pulsing core, and cinematic lighting. Hyper-realistic material response (MeshPhysicalMaterial with clearcoat, metalness, roughness, emissive, transmission, iridescence, ACESFilmic tone mapping, soft shadows, UnrealBloomPass + OutputPass) with animated particle streams that refuse to fall, respond to the cursor, and surge on interaction. The underestimated become the architecture. Click, tap, or press Space to temporarily accelerate the ascent into a surge.
+A self-contained Three.js WebGL scene of rising determination particles (900k across three layered systems), a glowing ascending spine, energy helices, orbiting orbs, pulsing core, and cinematic lighting. Hyper-realistic material response (MeshPhysicalMaterial with clearcoat, metalness, roughness, emissive, transmission, iridescence, ACESFilmic tone mapping, soft shadows, UnrealBloomPass + OutputPass) with animated particle streams that refuse to fall, respond to the cursor, and surge on interaction. The underestimated become the architecture. Click, tap, or press Space to temporarily accelerate the ascent into a surge.
 
 No build step. Open `index.html` or deploy statically. Uses ES modules + importmap for Three.js r169 + post-processing.
 
@@ -32,9 +32,9 @@ What begins as overlooked sparks becomes an unstoppable rise.
 
 The mouse draws the overlooked into alignment. The click unleashes the surge.
 
-Pt.17: denser multi-layer iridescent streams, stronger volumetric presence, clearer signal, unbreakable rise. The architecture of becoming undeniable. Hyper-real PBR with elevated iridescence and magnetic attraction.
+Pt.18: denser multi-layer iridescent streams, stronger multi-octave turbulence, elevated volumetric presence, clearer signal, unbreakable rise. The architecture of becoming undeniable. Hyper-real PBR with elevated iridescence and magnetic attraction.
 
 ---
 
 *gothamgodzilla / matryx-man*  
-*Revised & remastered · WebGL hyper-real particle ascension with mouse attraction & surge · Pt.17 · 2026*
+*Revised & remastered · WebGL hyper-real particle ascension with mouse attraction & surge · Pt.18 · 2026*
