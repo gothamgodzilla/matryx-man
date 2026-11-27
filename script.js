@@ -9,11 +9,11 @@ const loader = document.getElementById('loader');
 const quoteEl = document.getElementById('quote');
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x000000, 0.0009);
+scene.fog = new THREE.FogExp2(0x000000, 0.0008);
 scene.background = new THREE.Color(0x000000);
 
-const camera = new THREE.PerspectiveCamera(32, window.innerWidth / window.innerHeight, 0.1, 2000);
-camera.position.set(0, 20, 56);
+const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 2200);
+camera.position.set(0, 22, 60);
 
 const renderer = new THREE.WebGLRenderer({
   canvas,
@@ -26,7 +26,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 2.9;
+renderer.toneMappingExposure = 3.0;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -36,65 +36,65 @@ const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
-  3.6,
-  0.30,
-  0.20
+  3.8,
+  0.28,
+  0.18
 );
 composer.addPass(bloomPass);
 const outputPass = new OutputPass();
 composer.addPass(outputPass);
 
 // Lighting – hyper-real cinematic multi-rig with elevated iridescent response
-const ambient = new THREE.AmbientLight(0x0a0a18, 0.018);
+const ambient = new THREE.AmbientLight(0x0a0a18, 0.015);
 scene.add(ambient);
 
-const key = new THREE.DirectionalLight(0xffe8c0, 7.6);
-key.position.set(28, 48, 30);
+const key = new THREE.DirectionalLight(0xffe8c0, 8.0);
+key.position.set(30, 50, 32);
 key.castShadow = true;
 key.shadow.mapSize.set(2048, 2048);
 key.shadow.camera.near = 0.5;
-key.shadow.camera.far = 240;
+key.shadow.camera.far = 260;
 key.shadow.bias = -0.0002;
 scene.add(key);
 
-const rim = new THREE.DirectionalLight(0x6688ff, 5.4);
-rim.position.set(-34, 28, -26);
+const rim = new THREE.DirectionalLight(0x6688ff, 5.8);
+rim.position.set(-36, 30, -28);
 scene.add(rim);
 
-const fill = new THREE.PointLight(0xff5500, 22.0, 180);
-fill.position.set(0, 10, 0);
+const fill = new THREE.PointLight(0xff5500, 24.0, 200);
+fill.position.set(0, 12, 0);
 fill.castShadow = true;
 scene.add(fill);
 
-const accent = new THREE.PointLight(0xffee66, 12.0, 100);
-accent.position.set(20, 26, 18);
+const accent = new THREE.PointLight(0xffee66, 14.0, 110);
+accent.position.set(22, 28, 20);
 scene.add(accent);
 
-const cool = new THREE.PointLight(0x55bbff, 8.0, 110);
-cool.position.set(-20, 20, -18);
+const cool = new THREE.PointLight(0x55bbff, 9.0, 120);
+cool.position.set(-22, 22, -20);
 scene.add(cool);
 
-const surgeLight = new THREE.PointLight(0xff7700, 0, 160);
-surgeLight.position.set(0, 16, 0);
+const surgeLight = new THREE.PointLight(0xff7700, 0, 180);
+surgeLight.position.set(0, 18, 0);
 scene.add(surgeLight);
 
 // Ground
-const groundGeo = new THREE.PlaneGeometry(600, 600, 300, 300);
+const groundGeo = new THREE.PlaneGeometry(700, 700, 350, 350);
 const groundMat = new THREE.MeshStandardMaterial({
   color: 0x020208,
-  roughness: 0.97,
-  metalness: 0.03,
+  roughness: 0.98,
+  metalness: 0.02,
   emissive: 0x080200,
-  emissiveIntensity: 0.09
+  emissiveIntensity: 0.1
 });
 const ground = new THREE.Mesh(groundGeo, groundMat);
 ground.rotation.x = -Math.PI / 2;
-ground.position.y = -28;
+ground.position.y = -30;
 ground.receiveShadow = true;
 scene.add(ground);
 
-// Primary particles – rising determination streams (450k)
-const particleCount = 450000;
+// Primary particles – rising determination streams (500k)
+const particleCount = 500000;
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
 const sizes = new Float32Array(particleCount);
@@ -102,17 +102,17 @@ const velocities = new Float32Array(particleCount);
 
 for (let i = 0; i < particleCount; i++) {
   const i3 = i * 3;
-  positions[i3] = (Math.random() - 0.5) * 240;
-  positions[i3 + 1] = Math.random() * 130 - 32;
-  positions[i3 + 2] = (Math.random() - 0.5) * 240;
+  positions[i3] = (Math.random() - 0.5) * 260;
+  positions[i3 + 1] = Math.random() * 140 - 35;
+  positions[i3 + 2] = (Math.random() - 0.5) * 260;
 
   const t = Math.random();
   colors[i3] = 1.0;
-  colors[i3 + 1] = 0.08 + t * 0.78;
-  colors[i3 + 2] = 0.001 + t * 0.58;
+  colors[i3 + 1] = 0.06 + t * 0.82;
+  colors[i3 + 2] = 0.001 + t * 0.62;
 
-  sizes[i] = 0.005 + Math.random() * 0.32;
-  velocities[i] = 0.035 + Math.random() * 0.24;
+  sizes[i] = 0.004 + Math.random() * 0.36;
+  velocities[i] = 0.032 + Math.random() * 0.26;
 }
 
 const particleGeo = new THREE.BufferGeometry();
@@ -121,10 +121,10 @@ particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 particleGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
 const particleMat = new THREE.PointsMaterial({
-  size: 0.14,
+  size: 0.15,
   vertexColors: true,
   transparent: true,
-  opacity: 0.98,
+  opacity: 0.99,
   blending: THREE.AdditiveBlending,
   depthWrite: false,
   sizeAttenuation: true
@@ -132,25 +132,25 @@ const particleMat = new THREE.PointsMaterial({
 const particles = new THREE.Points(particleGeo, particleMat);
 scene.add(particles);
 
-// Secondary denser core stream particles (300k) – volumetric feel near spine
-const coreParticleCount = 300000;
+// Secondary denser core stream particles (350k)
+const coreParticleCount = 350000;
 const corePositions = new Float32Array(coreParticleCount * 3);
 const coreColors = new Float32Array(coreParticleCount * 3);
 const coreVelocities = new Float32Array(coreParticleCount);
 
 for (let i = 0; i < coreParticleCount; i++) {
   const i3 = i * 3;
-  const r = Math.random() * 14;
+  const r = Math.random() * 16;
   const a = Math.random() * Math.PI * 2;
   corePositions[i3] = Math.cos(a) * r;
-  corePositions[i3 + 1] = Math.random() * 65 - 24;
+  corePositions[i3 + 1] = Math.random() * 70 - 26;
   corePositions[i3 + 2] = Math.sin(a) * r;
 
   coreColors[i3] = 1.0;
-  coreColors[i3 + 1] = 0.32 + Math.random() * 0.62;
-  coreColors[i3 + 2] = 0.04 + Math.random() * 0.42;
+  coreColors[i3 + 1] = 0.28 + Math.random() * 0.68;
+  coreColors[i3 + 2] = 0.03 + Math.random() * 0.48;
 
-  coreVelocities[i] = 0.055 + Math.random() * 0.28;
+  coreVelocities[i] = 0.05 + Math.random() * 0.3;
 }
 
 const coreParticleGeo = new THREE.BufferGeometry();
@@ -158,10 +158,10 @@ coreParticleGeo.setAttribute('position', new THREE.BufferAttribute(corePositions
 coreParticleGeo.setAttribute('color', new THREE.BufferAttribute(coreColors, 3));
 
 const coreParticleMat = new THREE.PointsMaterial({
-  size: 0.17,
+  size: 0.18,
   vertexColors: true,
   transparent: true,
-  opacity: 0.95,
+  opacity: 0.96,
   blending: THREE.AdditiveBlending,
   depthWrite: false,
   sizeAttenuation: true
@@ -169,24 +169,24 @@ const coreParticleMat = new THREE.PointsMaterial({
 const coreParticles = new THREE.Points(coreParticleGeo, coreParticleMat);
 scene.add(coreParticles);
 
-// Tertiary atmospheric sparks (150k) – distant multi-octave volumetric
-const atmParticleCount = 150000;
+// Tertiary atmospheric sparks (200k)
+const atmParticleCount = 200000;
 const atmPositions = new Float32Array(atmParticleCount * 3);
 const atmColors = new Float32Array(atmParticleCount * 3);
 const atmVelocities = new Float32Array(atmParticleCount);
 
 for (let i = 0; i < atmParticleCount; i++) {
   const i3 = i * 3;
-  atmPositions[i3] = (Math.random() - 0.5) * 320;
-  atmPositions[i3 + 1] = Math.random() * 160 - 40;
-  atmPositions[i3 + 2] = (Math.random() - 0.5) * 320;
+  atmPositions[i3] = (Math.random() - 0.5) * 360;
+  atmPositions[i3 + 1] = Math.random() * 180 - 45;
+  atmPositions[i3 + 2] = (Math.random() - 0.5) * 360;
 
   const t = Math.random();
   atmColors[i3] = 1.0;
-  atmColors[i3 + 1] = 0.15 + t * 0.6;
-  atmColors[i3 + 2] = 0.05 + t * 0.4;
+  atmColors[i3 + 1] = 0.12 + t * 0.65;
+  atmColors[i3 + 2] = 0.04 + t * 0.45;
 
-  atmVelocities[i] = 0.02 + Math.random() * 0.12;
+  atmVelocities[i] = 0.018 + Math.random() * 0.14;
 }
 
 const atmParticleGeo = new THREE.BufferGeometry();
@@ -194,10 +194,10 @@ atmParticleGeo.setAttribute('position', new THREE.BufferAttribute(atmPositions, 
 atmParticleGeo.setAttribute('color', new THREE.BufferAttribute(atmColors, 3));
 
 const atmParticleMat = new THREE.PointsMaterial({
-  size: 0.08,
+  size: 0.09,
   vertexColors: true,
   transparent: true,
-  opacity: 0.65,
+  opacity: 0.7,
   blending: THREE.AdditiveBlending,
   depthWrite: false,
   sizeAttenuation: true
@@ -205,53 +205,90 @@ const atmParticleMat = new THREE.PointsMaterial({
 const atmParticles = new THREE.Points(atmParticleGeo, atmParticleMat);
 scene.add(atmParticles);
 
+// Quaternary ultra-dense micro-sparks (100k) near core
+const microParticleCount = 100000;
+const microPositions = new Float32Array(microParticleCount * 3);
+const microColors = new Float32Array(microParticleCount * 3);
+const microVelocities = new Float32Array(microParticleCount);
+
+for (let i = 0; i < microParticleCount; i++) {
+  const i3 = i * 3;
+  const r = Math.random() * 8;
+  const a = Math.random() * Math.PI * 2;
+  microPositions[i3] = Math.cos(a) * r;
+  microPositions[i3 + 1] = Math.random() * 40 - 15;
+  microPositions[i3 + 2] = Math.sin(a) * r;
+
+  microColors[i3] = 1.0;
+  microColors[i3 + 1] = 0.4 + Math.random() * 0.55;
+  microColors[i3 + 2] = 0.05 + Math.random() * 0.35;
+
+  microVelocities[i] = 0.08 + Math.random() * 0.4;
+}
+
+const microParticleGeo = new THREE.BufferGeometry();
+microParticleGeo.setAttribute('position', new THREE.BufferAttribute(microPositions, 3));
+microParticleGeo.setAttribute('color', new THREE.BufferAttribute(microColors, 3));
+
+const microParticleMat = new THREE.PointsMaterial({
+  size: 0.12,
+  vertexColors: true,
+  transparent: true,
+  opacity: 0.92,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+  sizeAttenuation: true
+});
+const microParticles = new THREE.Points(microParticleGeo, microParticleMat);
+scene.add(microParticles);
+
 // Central ascending structure – determination spine + energy helix with elevated iridescence
 const spineGroup = new THREE.Group();
 const helixGroup = new THREE.Group();
 
-for (let i = 0; i < 100; i++) {
-  const geo = new THREE.CylinderGeometry(0.018 + Math.random()*0.14, 0.55, 1.4, 48);
+for (let i = 0; i < 120; i++) {
+  const geo = new THREE.CylinderGeometry(0.015 + Math.random()*0.16, 0.6, 1.5, 48);
   const mat = new THREE.MeshPhysicalMaterial({
     color: 0xff4a00,
     emissive: 0xff2200,
-    emissiveIntensity: 2.8,
-    metalness: 0.98,
-    roughness: 0.018,
+    emissiveIntensity: 3.0,
+    metalness: 0.99,
+    roughness: 0.015,
     clearcoat: 1.0,
-    clearcoatRoughness: 0.008,
-    transmission: 0.42,
-    thickness: 0.85,
-    ior: 1.62,
-    iridescence: 0.99,
-    iridescenceIOR: 1.46,
-    iridescenceThicknessRange: [120, 560]
+    clearcoatRoughness: 0.005,
+    transmission: 0.45,
+    thickness: 0.9,
+    ior: 1.65,
+    iridescence: 0.995,
+    iridescenceIOR: 1.48,
+    iridescenceThicknessRange: [140, 600]
   });
   const mesh = new THREE.Mesh(geo, mat);
-  mesh.position.y = i * 1.0 - 22;
-  mesh.rotation.z = Math.sin(i * 0.12) * 0.45;
+  mesh.position.y = i * 1.05 - 24;
+  mesh.rotation.z = Math.sin(i * 0.1) * 0.5;
   mesh.castShadow = true;
   spineGroup.add(mesh);
 }
 
 // Helix energy rings with elevated iridescence
-for (let i = 0; i < 160; i++) {
-  const angle = (i / 160) * Math.PI * 18;
-  const y = (i / 160) * 62 - 22;
-  const geo = new THREE.TorusGeometry(0.7 + i * 0.030, 0.028, 28, 56);
+for (let i = 0; i < 180; i++) {
+  const angle = (i / 180) * Math.PI * 20;
+  const y = (i / 180) * 70 - 24;
+  const geo = new THREE.TorusGeometry(0.75 + i * 0.032, 0.03, 32, 64);
   const mat = new THREE.MeshPhysicalMaterial({
     color: 0xffee99,
     emissive: 0xffaa00,
-    emissiveIntensity: 3.1,
-    metalness: 0.999,
-    roughness: 0.006,
+    emissiveIntensity: 3.4,
+    metalness: 1.0,
+    roughness: 0.004,
     clearcoat: 1.0,
-    clearcoatRoughness: 0.006,
-    iridescence: 0.995,
-    iridescenceIOR: 1.38,
-    iridescenceThicknessRange: [90, 520]
+    clearcoatRoughness: 0.004,
+    iridescence: 0.998,
+    iridescenceIOR: 1.4,
+    iridescenceThicknessRange: [100, 560]
   });
   const mesh = new THREE.Mesh(geo, mat);
-  mesh.position.set(Math.cos(angle) * 3.2, y, Math.sin(angle) * 3.2);
+  mesh.position.set(Math.cos(angle) * 3.5, y, Math.sin(angle) * 3.5);
   mesh.rotation.x = Math.PI / 2;
   mesh.rotation.z = angle;
   mesh.castShadow = true;
@@ -262,45 +299,45 @@ spineGroup.add(helixGroup);
 scene.add(spineGroup);
 
 // Base core – pulsing determination source with elevated iridescence
-const coreGeo = new THREE.SphereGeometry(2.9, 128, 128);
+const coreGeo = new THREE.SphereGeometry(3.2, 128, 128);
 const coreMat = new THREE.MeshPhysicalMaterial({
   color: 0xff1000,
   emissive: 0xff0000,
-  emissiveIntensity: 5.6,
-  metalness: 0.78,
-  roughness: 0.02,
+  emissiveIntensity: 6.0,
+  metalness: 0.8,
+  roughness: 0.015,
   clearcoat: 1.0,
-  clearcoatRoughness: 0.01,
-  transmission: 0.35,
-  iridescence: 0.95,
-  iridescenceIOR: 1.48,
-  iridescenceThicknessRange: [140, 620]
+  clearcoatRoughness: 0.008,
+  transmission: 0.38,
+  iridescence: 0.97,
+  iridescenceIOR: 1.5,
+  iridescenceThicknessRange: [160, 680]
 });
 const core = new THREE.Mesh(coreGeo, coreMat);
-core.position.y = -10;
+core.position.y = -12;
 core.castShadow = true;
 scene.add(core);
 
 // Additional floating energy orbs
 const orbs = [];
-for (let i = 0; i < 100; i++) {
-  const geo = new THREE.SphereGeometry(0.05 + Math.random() * 0.52, 48, 48);
+for (let i = 0; i < 120; i++) {
+  const geo = new THREE.SphereGeometry(0.04 + Math.random() * 0.58, 48, 48);
   const mat = new THREE.MeshPhysicalMaterial({
     color: 0xffdd88,
     emissive: 0xff9900,
-    emissiveIntensity: 3.8,
-    metalness: 0.96,
-    roughness: 0.015,
-    iridescence: 0.88,
-    iridescenceIOR: 1.40,
-    iridescenceThicknessRange: [70, 420]
+    emissiveIntensity: 4.2,
+    metalness: 0.97,
+    roughness: 0.012,
+    iridescence: 0.9,
+    iridescenceIOR: 1.42,
+    iridescenceThicknessRange: [80, 480]
   });
   const orb = new THREE.Mesh(geo, mat);
   orb.userData = {
-    radius: 5.5 + Math.random() * 30,
-    speed: 0.14 + Math.random() * 1.6,
+    radius: 6 + Math.random() * 34,
+    speed: 0.12 + Math.random() * 1.8,
     offset: Math.random() * Math.PI * 2,
-    yBase: 0.8 + Math.random() * 34
+    yBase: 1 + Math.random() * 38
   };
   scene.add(orb);
   orbs.push(orb);
@@ -320,11 +357,11 @@ const quotes = [
   "Quiet engines rewrite the visible skyline.",
   "The overlooked become the architecture.",
   "The mouse aligns the sparks. The click unleashes the surge.",
-  "Pt.18: denser multi-layer iridescent streams, multi-octave turbulence, stronger volumetric presence, unbreakable rise.",
+  "Pt.19: denser multi-layer iridescent streams, multi-octave turbulence, stronger volumetric presence, unbreakable rise.",
   "Hyper-real PBR with elevated iridescence. The architecture refuses to fall.",
   "The quiet engine never stops rewriting the board.",
   "Underestimated determination is the architecture that outlasts every count.",
-  "Pt.18 remaster: magnetic attraction, elevated density, multi-octave rise that cannot be counted out."
+  "Pt.19 remaster: magnetic attraction, elevated density, multi-octave rise that cannot be counted out."
 ];
 let quoteIndex = 0;
 
@@ -334,9 +371,9 @@ function updateQuote() {
     quoteIndex = (quoteIndex + 1) % quotes.length;
     quoteEl.textContent = quotes[quoteIndex];
     quoteEl.style.opacity = 1;
-  }, 750);
+  }, 800);
 }
-setInterval(updateQuote, 6400);
+setInterval(updateQuote, 6800);
 
 let time = 0;
 let mouseX = 0, mouseY = 0;
@@ -347,12 +384,12 @@ const raycaster = new THREE.Raycaster();
 const mouseNDC = new THREE.Vector2();
 
 function triggerSurge() {
-  boost = Math.min(boost + 1.3, 7.5);
-  surgeLight.intensity = 48;
+  boost = Math.min(boost + 1.5, 8.0);
+  surgeLight.intensity = 55;
   setTimeout(() => {
-    boost = Math.max(boost - 1.3, 1.0);
+    boost = Math.max(boost - 1.5, 1.0);
     surgeLight.intensity = 0;
-  }, 4500);
+  }, 4800);
 }
 
 window.addEventListener('mousemove', (e) => {
@@ -388,44 +425,44 @@ function animate() {
 
   // Animate primary particles with multi-octave turbulence
   const pos = particleGeo.attributes.position.array;
-  const attractStrength = 0.042;
+  const attractStrength = 0.048;
   for (let i = 0; i < particleCount; i++) {
     const i3 = i * 3;
     pos[i3 + 1] += velocities[i] * boost;
     // Multi-octave turbulence
-    pos[i3] += Math.sin(time * 0.55 + i * 0.0020) * 0.032 + Math.sin(time * 1.1 + i * 0.004) * 0.012;
-    pos[i3 + 2] += Math.cos(time * 0.45 + i * 0.0020) * 0.032 + Math.cos(time * 0.9 + i * 0.0035) * 0.014;
+    pos[i3] += Math.sin(time * 0.5 + i * 0.0018) * 0.035 + Math.sin(time * 1.2 + i * 0.0038) * 0.014 + Math.sin(time * 2.4 + i * 0.007) * 0.006;
+    pos[i3 + 2] += Math.cos(time * 0.42 + i * 0.0018) * 0.035 + Math.cos(time * 0.95 + i * 0.0032) * 0.016 + Math.cos(time * 1.9 + i * 0.006) * 0.007;
 
     const dx = mouseWorld.x - pos[i3];
     const dz = mouseWorld.z - pos[i3 + 2];
     const dist = Math.sqrt(dx * dx + dz * dz) + 0.1;
-    if (dist < 62) {
+    if (dist < 70) {
       pos[i3] += (dx / dist) * attractStrength * boost;
       pos[i3 + 2] += (dz / dist) * attractStrength * boost;
     }
 
-    if (pos[i3 + 1] > 82) {
-      pos[i3 + 1] = -32;
-      pos[i3] = (Math.random() - 0.5) * 240;
-      pos[i3 + 2] = (Math.random() - 0.5) * 240;
+    if (pos[i3 + 1] > 90) {
+      pos[i3 + 1] = -35;
+      pos[i3] = (Math.random() - 0.5) * 260;
+      pos[i3 + 2] = (Math.random() - 0.5) * 260;
     }
   }
   particleGeo.attributes.position.needsUpdate = true;
 
-  // Animate core particles (denser volumetric stream)
+  // Animate core particles
   const cpos = coreParticleGeo.attributes.position.array;
   for (let i = 0; i < coreParticleCount; i++) {
     const i3 = i * 3;
-    cpos[i3 + 1] += coreVelocities[i] * boost * 1.75;
-    const swirl = time * 1.05 + i * 0.0070;
-    cpos[i3] += Math.cos(swirl) * 0.062 + Math.cos(time * 2.1 + i * 0.01) * 0.018;
-    cpos[i3 + 2] += Math.sin(swirl) * 0.062 + Math.sin(time * 1.8 + i * 0.009) * 0.016;
+    cpos[i3 + 1] += coreVelocities[i] * boost * 1.8;
+    const swirl = time * 1.1 + i * 0.0065;
+    cpos[i3] += Math.cos(swirl) * 0.068 + Math.cos(time * 2.2 + i * 0.009) * 0.02;
+    cpos[i3 + 2] += Math.sin(swirl) * 0.068 + Math.sin(time * 1.9 + i * 0.008) * 0.018;
 
-    if (cpos[i3 + 1] > 55) {
-      const r = Math.random() * 14;
+    if (cpos[i3 + 1] > 60) {
+      const r = Math.random() * 16;
       const a = Math.random() * Math.PI * 2;
       cpos[i3] = Math.cos(a) * r;
-      cpos[i3 + 1] = -24;
+      cpos[i3 + 1] = -26;
       cpos[i3 + 2] = Math.sin(a) * r;
     }
   }
@@ -435,27 +472,46 @@ function animate() {
   const apos = atmParticleGeo.attributes.position.array;
   for (let i = 0; i < atmParticleCount; i++) {
     const i3 = i * 3;
-    apos[i3 + 1] += atmVelocities[i] * boost * 0.85;
-    apos[i3] += Math.sin(time * 0.25 + i * 0.001) * 0.018;
-    apos[i3 + 2] += Math.cos(time * 0.22 + i * 0.0012) * 0.018;
+    apos[i3 + 1] += atmVelocities[i] * boost * 0.9;
+    apos[i3] += Math.sin(time * 0.22 + i * 0.0009) * 0.02;
+    apos[i3 + 2] += Math.cos(time * 0.2 + i * 0.0011) * 0.02;
 
-    if (apos[i3 + 1] > 110) {
-      apos[i3 + 1] = -40;
-      apos[i3] = (Math.random() - 0.5) * 320;
-      apos[i3 + 2] = (Math.random() - 0.5) * 320;
+    if (apos[i3 + 1] > 120) {
+      apos[i3 + 1] = -45;
+      apos[i3] = (Math.random() - 0.5) * 360;
+      apos[i3 + 2] = (Math.random() - 0.5) * 360;
     }
   }
   atmParticleGeo.attributes.position.needsUpdate = true;
 
+  // Animate micro particles
+  const mpos = microParticleGeo.attributes.position.array;
+  for (let i = 0; i < microParticleCount; i++) {
+    const i3 = i * 3;
+    mpos[i3 + 1] += microVelocities[i] * boost * 2.2;
+    const microSwirl = time * 1.4 + i * 0.012;
+    mpos[i3] += Math.cos(microSwirl) * 0.045;
+    mpos[i3 + 2] += Math.sin(microSwirl) * 0.045;
+
+    if (mpos[i3 + 1] > 35) {
+      const r = Math.random() * 8;
+      const a = Math.random() * Math.PI * 2;
+      mpos[i3] = Math.cos(a) * r;
+      mpos[i3 + 1] = -15;
+      mpos[i3 + 2] = Math.sin(a) * r;
+    }
+  }
+  microParticleGeo.attributes.position.needsUpdate = true;
+
   // Spine and helix
-  spineGroup.rotation.y = time * 0.19;
-  spineGroup.position.y = Math.sin(time * 0.45) * 1.9;
-  helixGroup.rotation.y = time * 0.48;
+  spineGroup.rotation.y = time * 0.2;
+  spineGroup.position.y = Math.sin(time * 0.42) * 2.2;
+  helixGroup.rotation.y = time * 0.52;
 
   // Core pulse
-  const pulse = 1 + Math.sin(time * 2.7) * 0.62;
+  const pulse = 1 + Math.sin(time * 2.8) * 0.68;
   core.scale.setScalar(pulse);
-  coreMat.emissiveIntensity = 4.8 + Math.sin(time * 3.3) * 2.2;
+  coreMat.emissiveIntensity = 5.2 + Math.sin(time * 3.5) * 2.5;
 
   // Orbs
   orbs.forEach((orb, idx) => {
@@ -463,25 +519,25 @@ function animate() {
     const a = time * d.speed + d.offset;
     orb.position.set(
       Math.cos(a) * d.radius,
-      d.yBase + Math.sin(time * 0.95 + idx) * 4.0,
+      d.yBase + Math.sin(time * 1.0 + idx) * 4.5,
       Math.sin(a) * d.radius
     );
-    orb.scale.setScalar(1 + Math.sin(time * 1.9 + idx) * 0.48);
+    orb.scale.setScalar(1 + Math.sin(time * 2.0 + idx) * 0.52);
   });
 
   // Camera cinematic drift + mouse influence
-  camera.position.x = Math.sin(time * 0.05) * 12.5 + mouseX * 11.0;
-  camera.position.y = 20 + Math.sin(time * 0.13) * 4.5 + mouseY * 5.5;
-  camera.position.z = 56 + Math.cos(time * 0.04) * 10.5;
-  camera.lookAt(0, 14, 0);
+  camera.position.x = Math.sin(time * 0.045) * 14 + mouseX * 12.0;
+  camera.position.y = 22 + Math.sin(time * 0.12) * 5.0 + mouseY * 6.0;
+  camera.position.z = 60 + Math.cos(time * 0.035) * 12;
+  camera.lookAt(0, 16, 0);
 
   // Dynamic lights
-  fill.intensity = 17.5 + Math.sin(time * 2.1) * 4.5;
-  accent.intensity = 8.0 + Math.sin(time * 1.7) * 2.8;
-  accent.position.x = Math.sin(time * 0.85) * 26;
-  accent.position.z = Math.cos(time * 0.85) * 26;
-  cool.intensity = 5.0 + Math.sin(time * 1.05) * 2.0;
-  surgeLight.intensity *= 0.84;
+  fill.intensity = 19 + Math.sin(time * 2.2) * 5.0;
+  accent.intensity = 9.0 + Math.sin(time * 1.8) * 3.2;
+  accent.position.x = Math.sin(time * 0.9) * 28;
+  accent.position.z = Math.cos(time * 0.9) * 28;
+  cool.intensity = 5.5 + Math.sin(time * 1.1) * 2.2;
+  surgeLight.intensity *= 0.82;
 
   composer.render();
 }
@@ -497,4 +553,4 @@ window.addEventListener('resize', () => {
 setTimeout(() => {
   loader.classList.add('hidden');
   animate();
-}, 2400);
+}, 2600);
